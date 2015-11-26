@@ -18,3 +18,4 @@
 
 # Ignore twitter config file w/ api keys
 /config/initializers/twitter.rb
+/db/seeds.rb
