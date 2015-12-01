@@ -10,7 +10,7 @@ $(document).ready(function(){
     });
 
   function buildBubbleGraph(common_words_tweeted){
-    var diameter = 960;
+    var diameter = 1200;
     var xTranslate = null;
     var yTranslate = null;
     var theta = 16.5 * Math.PI;
