@@ -4,7 +4,10 @@ class TweetsController < ApplicationController
   # GET /tweets
   # GET /tweets.json
   def index
-    @tweets = Tweet.all
+    respond_to do |format|
+      format.html 
+      format.json { render :json => {tweets: Tweet.word_frequency_hash} }
+    end
   end
 
   # GET /tweets/1
