@@ -6,7 +6,7 @@ class TweetsController < ApplicationController
   def index
     respond_to do |format|
       format.html 
-      format.json { render :json => {tweets: Tweet.word_frequency_hash} }
+      format.json { render :json => {tweets: Tweet.word_frequency_hash(params[:user_id])} }
     end
   end
 
@@ -28,7 +28,6 @@ class TweetsController < ApplicationController
   # POST /tweets.json
   def create
     @tweet = Tweet.new(tweet_params)
-
     respond_to do |format|
       if @tweet.save
         format.html { redirect_to @tweet, notice: 'Tweet was successfully created.' }

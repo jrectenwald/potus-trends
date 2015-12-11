@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151125231024) do
+ActiveRecord::Schema.define(version: 20151201180343) do
+
+  create_table "candidates", force: :cascade do |t|
+    t.string  "name"
+    t.integer "user_id", limit: 20
+  end
 
   create_table "tweets", force: :cascade do |t|
     t.integer  "tweet_id",       limit: 20

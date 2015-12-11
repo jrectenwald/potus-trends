@@ -1,19 +1,20 @@
 $(document).ready(function(){
 
-  $.ajax({
-        url: '/tweets',
-        method: "GET",
-        dataType: "JSON"
-    }).success(function(common_words_tweeted, textStatus, xhr) {
-        buildBubbleGraph(common_words_tweeted.tweets);
-    }).error(function(){
-    });
+  // $.ajax({
+  //       url: '/tweets',
+  //       method: "GET",
+  //       dataType: "JSON"
+  //   }).success(function(common_words_tweeted, textStatus, xhr) {
+  //       buildBubbleGraph(common_words_tweeted.tweets);
+  //   }).error(function(){
+  //   });
 
   function buildBubbleGraph(common_words_tweeted){
+    $("svg").remove();
     var diameter = 1200;
     var xTranslate = null;
     var yTranslate = null;
-    var theta = 16.5 * Math.PI;
+    var theta = 17.5 * Math.PI;
     var maxFrequency = common_words_tweeted[common_words_tweeted.length - 1].frequency;
 
     var bubble = d3.layout.pack()
@@ -31,15 +32,14 @@ $(document).ready(function(){
         .enter().append("g")
         .attr("class", "bubble")
         .attr("transform", function(d) { 
-            debugger
-            thetaOffset = Math.PI * (d.frequency / maxFrequency );
-            if(thetaOffset > Math.PI / 9) {
-                theta += Math.PI / 9;
+            thetaOffset = 3 * Math.PI * (d.frequency / maxFrequency );
+            if(thetaOffset > Math.PI / 8) {
+                theta += Math.PI / 8;
             } else {
                 theta += thetaOffset;
             }
-            xTranslate = diameter / 2 + Math.exp(0.09 * theta) * Math.cos(theta);
-            yTranslate = diameter / 2 + Math.exp(0.09 * theta) * Math.sin(theta);
+            xTranslate = diameter / 2 + Math.exp(0.086 * theta) * Math.cos(theta);
+            yTranslate = diameter / 2 + Math.exp(0.086 * theta) * Math.sin(theta);
             return "translate(" + xTranslate + "," + yTranslate + ")"; 
         });
 
@@ -55,4 +55,20 @@ $(document).ready(function(){
         .style("text-anchor", "middle")
         .text(function(d) { return d.word; });
   };
+
+  $("#candidate_id").on("change", function() {
+    $.ajax({
+            url: "/tweets",
+            type: "GET",
+            dataType: "json",
+            data: { user_id: $("#candidate_id").val() }, // This goes to Controller in params hash, i.e. params[:file_name]
+            complete: function() {},
+            success: function(data, textStatus, xhr) {
+                    buildBubbleGraph(data.tweets)
+            },
+            error: function() {
+                debugger
+            }
+    });
+  });
 })
