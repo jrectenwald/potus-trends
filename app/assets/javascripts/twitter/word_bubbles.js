@@ -39,7 +39,7 @@ $(document).ready(function(){
                 theta += thetaOffset;
             }
             xTranslate = diameter / 2 + Math.exp(0.086 * theta) * Math.cos(theta);
-            yTranslate = diameter / 2 + Math.exp(0.086 * theta) * Math.sin(theta);
+            yTranslate = (diameter / 2 + Math.exp(0.086 * theta) * Math.sin(theta)) - 200;
             return "translate(" + xTranslate + "," + yTranslate + ")"; 
         });
 
