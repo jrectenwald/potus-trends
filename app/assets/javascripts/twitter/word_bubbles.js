@@ -1,13 +1,4 @@
-$(document).ready(function(){
-
-  // $.ajax({
-  //       url: '/tweets',
-  //       method: "GET",
-  //       dataType: "JSON"
-  //   }).success(function(common_words_tweeted, textStatus, xhr) {
-  //       buildBubbleGraph(common_words_tweeted.tweets);
-  //   }).error(function(){
-  //   });
+$(document).on('page:change', function(){
 
   function buildBubbleGraph(common_words_tweeted){
     $("svg").remove();
@@ -43,12 +34,9 @@ $(document).ready(function(){
             return "translate(" + xTranslate + "," + yTranslate + ")"; 
         });
 
-    // node.append("title")
-    //     .text(function(d) { return d.className + ": " + format(d.value); });
-
     node.append("circle")
         .attr("r", function(d) { return d.frequency / 4; })
-        .style("fill", "SteelBlue");
+        .style("fill", "8cb2d9");
 
     node.append("text")
         .attr("dy", ".3em")

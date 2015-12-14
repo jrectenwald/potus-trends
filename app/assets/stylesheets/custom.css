@@ -1,0 +1,14 @@
+.center-heading {
+  text-align: center ;
+}
+
+#candidate_dropdown {
+  position: relative;
+  left: 5%;
+  top: 15%;
+}
+
+svg {
+  display: block;
+  margin: auto;
+}
