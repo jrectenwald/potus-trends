@@ -2,13 +2,54 @@
   text-align: center ;
 }
 
-#candidate_dropdown {
+#candidate_dropdown, #frequency-table-button.btn{
   position: relative;
   left: 5%;
   top: 15%;
+  margin: 2%;
 }
 
 svg {
   display: block;
   margin: auto;
+}
+
+.word-frequency-table {
+  display: block;
+  margin-left: 42%;
+  margin-right: 57%;
+}
+
+table {
+    width:80%; 
+    margin-bottom: 3%;
+    font-size: 40px;
+/*    padding: 0px 0em 2.5ex 40px;
+*/}
+
+th, td, tr {  
+    padding: 20px 0em 2.5ex 20px;
+    font-size: 14px;
+}
+
+body { font-family: 'Helvetica Neue', Helvetica; font-weight: 300; padding: 20px;}
+    th { text-align: left; }
+    th.center, td.center { text-align: center; }
+    th.num, td.num { text-align: right; }
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
 }

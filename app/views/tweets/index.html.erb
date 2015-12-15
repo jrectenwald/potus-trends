@@ -3,11 +3,15 @@
 <h1 class="center-heading">Candidate Tweets</h1>
 <h3 class="center-heading">Relative Frequency of Words Tweeted 25 or More Times</h3>
 
+
+
 <form id="candidate_dropdown">
-  <select id="candidate_id" style="width: 20%;height:4em">
+  <select class="word-choice"  id="candidate_id" style="width: 20%;height:4em">
     <option value="choose_candidate">Choose A Candidate</option>
     <% Candidate.all.each do |candidate| %>
       <option value="<%=candidate.user_id%>"> <%= candidate.name %> </option> %>
     <% end %>
   </select>
 </form>
+
+<a class="btn btn-primary" id="frequency-table-button">Table View</a>

@@ -1,6 +1,23 @@
 $(document).on('page:change', function(){
 
+  $("#candidate_id.word-choice").on("change", function() {
+    $.ajax({
+            url: "/tweets",
+            type: "GET",
+            dataType: "json",
+            data: { user_id: $("#candidate_id").val() }, // This goes to Controller in params hash, i.e. params[:file_name]
+            complete: function() {},
+            success: function(data, textStatus, xhr) {
+                    buildBubbleGraph(data.tweet_frequency)
+            },
+            error: function() {
+                debugger
+            }
+    });
+  });
+
   function buildBubbleGraph(common_words_tweeted){
+    $("table").remove();
     $("svg").remove();
     var diameter = 1200;
     var xTranslate = null;
@@ -43,20 +60,4 @@ $(document).on('page:change', function(){
         .style("text-anchor", "middle")
         .text(function(d) { return d.word; });
   };
-
-  $("#candidate_id").on("change", function() {
-    $.ajax({
-            url: "/tweets",
-            type: "GET",
-            dataType: "json",
-            data: { user_id: $("#candidate_id").val() }, // This goes to Controller in params hash, i.e. params[:file_name]
-            complete: function() {},
-            success: function(data, textStatus, xhr) {
-                    buildBubbleGraph(data.tweets)
-            },
-            error: function() {
-                debugger
-            }
-    });
-  });
 })
